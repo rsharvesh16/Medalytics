@@ -3,6 +3,10 @@
 ## Overview
 MEDALYTICS is a comprehensive medical coding and insurance analytics platform built using Streamlit and AWS Bedrock. The system helps insurance companies process patient insurance payments through automated medical coding, analytics, and patient insurance analysis.
 
+The MEDALYTICS project is a comprehensive medical assistance system designed to streamline medical coding and insurance processing. At its core, it uses a Retrieval Augmented Generation (RAG) system where medical documents (PDFs or images) are first processed to extract text, which is then broken down into smaller, manageable chunks. These chunks are converted into numerical representations (embeddings) using AWS Bedrock's Titan model and stored in a FAISS vector database. When a user submits a query or document for analysis, the system retrieves the most relevant information from this database and combines it with the capabilities of the Meta Llama3 70B language model to generate accurate medical codes, analysis, and recommendations.
+<br>
+The system offers three main functionalities: Medical Coding, Analytics, and Patient Insurance Analytics. In Medical Coding, it processes medical documents to automatically generate ICD-10 codes, validate MEAT criteria, and provide disease information. The Analytics module analyzes historical medical data to identify trends and patterns, while the Patient Insurance Analytics component processes multiple medical reports to provide insurance claim analysis, cost breakdowns, and coverage recommendations. Throughout all these processes, the system maintains high accuracy by using the RAG approach, which ensures that the language model's responses are grounded in relevant medical documentation and knowledge. The system also implements robust error handling and rate limiting to ensure reliable performance when interacting with AWS services.
+
 ## Features
 - **Medical Coding Assistant**
   - Upload and process medical reports (PDF/Images)
@@ -21,38 +25,6 @@ MEDALYTICS is a comprehensive medical coding and insurance analytics platform bu
   - Cost breakdown visualization
   - Coverage recommendations
 
-## Prerequisites
-- Python 3.8 or higher
-- AWS account with Bedrock access
-- Tesseract OCR installed (for image processing)
-
-## Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/rsharvesh16/Medalytics.git
-cd medalytics
-```
-
-2. Create a virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. Install required packages:
-```bash
-pip install -r requirements.txt
-```
-
-4. Configure AWS credentials:
-   - Create `~/.aws/credentials` or set environment variables:
-```bash
-export AWS_ACCESS_KEY_ID=your_access_key
-export AWS_SECRET_ACCESS_KEY=your_secret_key
-export AWS_DEFAULT_REGION=us-east-1
-```
-
 ## Project Structure
 ```
 medalytics/
@@ -66,7 +38,7 @@ medalytics/
 ```
 
 ## Configuration
-Create a `requirements.txt` file with the following dependencies:
+
 ```
 streamlit
 boto3
@@ -81,22 +53,6 @@ pandas
 PyPDF2
 faiss-cpu
 ```
-
-## Usage
-
-1. Start the application:
-```bash
-streamlit run medical_coding_app.py
-```
-
-2. Access the web interface at `http://localhost:8501`
-
-3. Select an operation from the sidebar:
-   - Medical Coding
-   - Analytics
-   - Patient Insurance Analytics
-
-4. Upload medical documents and follow the on-screen instructions
 
 ## AWS Bedrock Models Used
 - Text Embeddings: `amazon.titan-embed-g1-text-02`
